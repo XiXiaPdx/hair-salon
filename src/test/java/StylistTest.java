@@ -57,19 +57,20 @@ public class StylistTest {
         Client newClient1 = new Client("Mary", newStylist.getStylistId());
         Client newClient2 = new Client("Bob", newStylist.getStylistId());
         newClient1.save();
+        int clientId = newClient1.getClientId();
         newClient2.save();
         int id = newStylist.getStylistId();
         newStylist.delete();
         assertEquals(null, Stylist.find(id));
-        assertEquals(0, Client.all().size());
+        assertEquals(-1, Client.find(clientId).getClientStylistId());
       }
-      // @Test
-      // public void updateStylistName_Sara(){
-      //   Stylist newStylist1 = new Stylist("Mary");
-      //   newStylist1.save();
-      //   newStylist1.updateStylistName("Sara");
-      //   assertEquals("Sara", Stylist.find(newStylist1.getStylistId()).getStylistName());
-      // }
+      @Test
+      public void updateStylistName_Sara(){
+        Stylist newStylist1 = new Stylist("Mary");
+        newStylist1.save();
+        newStylist1.updateStylistName("Sara");
+        assertEquals("Sara", Stylist.find(newStylist1.getStylistId()).getStylistName());
+      }
 
 
 

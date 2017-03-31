@@ -48,8 +48,12 @@ public class Stylist {
     }
   }
   public void  delete(){
-    this.deleteAllCients();
     try (Connection con = DB.sql2o.open()) {
+      String unassignClients = "UPDATE clients SET client_stylist_id=:client_stylist_id WHERE client_stylist_id=:id;";
+      con.createQuery(unassignClients)
+       .addParameter("id", this.id)
+       .addParameter("client_stylist_id", -1)
+       .executeUpdate();
       String sql = "DELETE FROM stylists WHERE id=:id;";
        con.createQuery(sql)
         .addParameter("id", this.id)
@@ -61,6 +65,15 @@ public class Stylist {
       String sql = "DELETE FROM clients WHERE client_stylist_id=:id;";
        con.createQuery(sql)
         .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
+  public void  updateStylistName(String newName){
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET s_name=:s_name WHERE id=:id;";
+       con.createQuery(sql)
+        .addParameter("id", this.id)
+        .addParameter("s_name", newName)
         .executeUpdate();
     }
   }
