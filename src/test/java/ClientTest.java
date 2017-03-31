@@ -31,13 +31,13 @@ public class ClientTest {
     assertTrue(newClient2.equals(Client.all().get(1)));
   }
   @Test
-  public void getCardId_true(){
+  public void getClientId_true(){
     Client newClient1 = new Client("Mary", 1);
     newClient1.save();
     assertTrue(newClient1.getClientId()>0);
   }
   @Test
-  public void findCard_true(){
+  public void findClient_true(){
     Client newClient1 = new Client("Mary", 1);
     newClient1.save();
     assertTrue(newClient1.equals(Client.find(newClient1.getClientId())));
