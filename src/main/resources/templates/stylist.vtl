@@ -1,6 +1,9 @@
 
 
  <h1> $stylist.getStylistName()</h1>
+ <form action="/stylists/$stylist.getStylistId()/delete" method="post">
+     <button class="btn btn-default changeStylistName" type="submit">You're fired.</button>
+ </form>
  <h4> Your Clients: </h4>
  <ul>
  #foreach($client in $clients)

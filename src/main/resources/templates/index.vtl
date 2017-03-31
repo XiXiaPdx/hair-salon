@@ -20,7 +20,7 @@
       <h3> Clients that need a Stylist </h3>
       #foreach($client in $clients)
         #if($client.getClientStylistId() == -1)
-          <li><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
+          <li><a href="/stylists/$client.getClientStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
         #end
       #end
     </div>
