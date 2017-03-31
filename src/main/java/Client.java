@@ -62,5 +62,14 @@ public static List<Client> all (){
         .executeUpdate();
     }
   }
+  public void  updateClientName(String newName){
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE clients SET c_name=:c_name WHERE id=:id;";
+       con.createQuery(sql)
+        .addParameter("id", this.id)
+        .addParameter("c_name", newName)
+        .executeUpdate();
+    }
+  }
 
 }

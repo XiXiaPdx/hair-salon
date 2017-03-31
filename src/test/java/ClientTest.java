@@ -50,6 +50,13 @@ public class ClientTest {
     newClient1.delete();
     assertEquals(null, Client.find(id));
   }
+  @Test
+  public void updateClientName_Sara(){
+    Client newClient1 = new Client("Mary", 1);
+    newClient1.save();
+    newClient1.updateClientName("Sara");
+    assertEquals("Sara", Client.find(newClient1.getClientId()).getClientName());
+  }
 
 
 
