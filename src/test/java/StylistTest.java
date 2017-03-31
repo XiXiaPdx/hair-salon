@@ -2,6 +2,7 @@ import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.List;
+import java.util.Arrays;
 
 public class StylistTest {
 
@@ -17,14 +18,26 @@ public class StylistTest {
         Stylist newStylist = new Stylist("Mary");
         assertEquals("Mary", newStylist.getStylistName());
       }
-      // @Test
-      // public void getAllStylists_true(){
-      //   Stylist newStylist1 = new Stylist("Mary");
-      //   Stylist newStylist2 = new Stylist("Bob");
-      //   newStylist1.save();
-      //   newStylist2.save();
-      //   assertTrue(newStylist2.equals(Stylist.all().get(1)));
-      // }
+
+      @Test
+      public void getClientsofStylist_True(){
+        Stylist newStylist = new Stylist("Mary");
+        newStylist.save();
+        Client newClient1 = new Client("Mary", newStylist.getStylistId());
+        Client newClient2 = new Client("Bob", newStylist.getStylistId());
+        newClient1.save();
+        newClient2.save();
+        Client [] clientList = new Client [] {newClient1, newClient2};
+        assertTrue(newStylist.getYourClients().containsAll(Arrays.asList(clientList)));
+      }
+      @Test
+      public void getAllStylists_true(){
+        Stylist newStylist1 = new Stylist("Mary");
+        Stylist newStylist2 = new Stylist("Bob");
+        newStylist1.save();
+        newStylist2.save();
+        assertTrue(newStylist2.equals(Stylist.all().get(1)));
+      }
       // @Test
       // public void getStylsitId_true(){
       //   Stylist newStylist1 = new Stylist("Mary");
