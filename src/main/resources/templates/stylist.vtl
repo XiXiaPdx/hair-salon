@@ -1,0 +1,24 @@
+
+
+ <h1> $stylist.getStylistName()</h1>
+ <h4> Your Clients: </h4>
+ <ul>
+ #foreach($client in $clients)
+     <li><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
+   #end
+</ul>
+
+  <form action="/stylists/$stylist.getStylistId()" method="post">
+      <div class=" form-group">
+        <label for="stylistNameChange"><h4>Change Stylist Name</h4></label>
+        <input id="stylistNameChange" class="form-control" name="stylistNameChange" type="text" required>
+      </div>
+      <button class="btn btn-default changeStylistName" type="submit">Change Name</button>
+  </form>
+  <form action="/stylists/$stylist.getStylistId()/clients/add" method="post">
+      <div class=" form-group">
+        <label for="addClient"><h4>Name of new client</h4></label>
+        <input id="addClient" class="form-control" name="addClient" type="text" required>
+      </div>
+      <button class="btn btn-default addClient" type="submit">Add Client</button>
+  </form>

@@ -1,0 +1,11 @@
+<h1> $client.getClientName()</h1>
+<form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()" method="post">
+    <div class=" form-group">
+      <label for="clientNameChange"><h4>Change Client Name</h4></label>
+      <input id="clientNameChange" class="form-control" name="clientNameChange" type="text" required>
+    </div>
+    <button class="btn btn-default changeClientName" type="submit">Change Name</button>
+</form>
+<form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()/delete" method="post">
+    <button class="btn btn-default addClient" type="submit">Delete Client</button>
+</form>
