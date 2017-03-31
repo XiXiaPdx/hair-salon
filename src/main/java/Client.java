@@ -42,7 +42,7 @@ public static List<Client> all (){
       return false;
     } else{
       Client newClient = (Client) otherClient;
-      return this.getClientName().equals(newClient.getClientName()) && this.getClientId() == newClient.getClientId();
+      return this.getClientName().equals(newClient.getClientName()) && this.getClientId() == newClient.getClientId() & this.getClientStylistId() == newClient.getClientStylistId();
     }
   }
   public static Client find (int id){

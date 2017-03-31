@@ -38,26 +38,31 @@ public class StylistTest {
         newStylist2.save();
         assertTrue(newStylist2.equals(Stylist.all().get(1)));
       }
-      // @Test
-      // public void getStylsitId_true(){
-      //   Stylist newStylist1 = new Stylist("Mary");
-      //   newStylist1.save();
-      //   assertTrue(newStylist1.getStylistId()>0);
-      // }
-      // @Test
-      // public void findStylist_true(){
-      //   Stylist newStylist1 = new Stylist("Mary");
-      //   newStylist1.save();
-      //   assertTrue(newStylist1.equals(Stylist.find(newStylist1.getStylistId())));
-      // }
-      // @Test
-      // public void deleteStylist_null(){
-      //   Stylist newStylist1 = new Stylist("Mary");
-      //   newStylist1.save();
-      //   int id = newStylist1.getStylistId();
-      //   newStylist1.delete();
-      //   assertEquals(null, Stylist.find(id));
-      // }
+      @Test
+      public void getStylsitId_true(){
+        Stylist newStylist1 = new Stylist("Mary");
+        newStylist1.save();
+        assertTrue(newStylist1.getStylistId()>0);
+      }
+      @Test
+      public void findStylist_true(){
+        Stylist newStylist1 = new Stylist("Mary");
+        newStylist1.save();
+        assertTrue(newStylist1.equals(Stylist.find(newStylist1.getStylistId())));
+      }
+      @Test
+      public void deleteStylist_null(){
+        Stylist newStylist = new Stylist("Mary");
+        newStylist.save();
+        Client newClient1 = new Client("Mary", newStylist.getStylistId());
+        Client newClient2 = new Client("Bob", newStylist.getStylistId());
+        newClient1.save();
+        newClient2.save();
+        int id = newStylist.getStylistId();
+        newStylist.delete();
+        assertEquals(null, Stylist.find(id));
+        assertEquals(0, Client.all().size());
+      }
       // @Test
       // public void updateStylistName_Sara(){
       //   Stylist newStylist1 = new Stylist("Mary");
