@@ -45,7 +45,22 @@ public static List<Client> all (){
       return this.getClientName().equals(newClient.getClientName()) && this.getClientId() == newClient.getClientId();
     }
   }
-
-
+  public static Client find (int id){
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients WHERE id=:id;";
+      Client newClient = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+        return newClient;
+    }
+  }
+  public void  delete(){
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM clients WHERE id=:id;";
+       con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
 
 }
