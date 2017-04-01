@@ -10,6 +10,13 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
+    before("/stylists", (request, response) -> {
+        if (request.session().attribute("loggedIn") != "loggedIn") {
+          String url = String.format("/");
+          response.redirect(url);
+        }
+    });
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("stylists", Stylist.all());
@@ -20,16 +27,11 @@ public class App {
     get("/login", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String userName = request.queryParams("userName");
-      request.session().attribute("userName", userName);
       if (userName.equals("Perry")){
-        String url = String.format("/stylists");
-        response.redirect(url);
-        // model.put("template", "templates/index.vtl");
-        // model.put("stylists", Stylist.all());
-        // model.put("clients", Client.all());
-      } else {
-        model.put("template", "templates/login.vtl");
+        request.session().attribute("loggedIn", "loggedIn");
       }
+      String url = String.format("/stylists");
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

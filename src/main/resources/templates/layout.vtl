@@ -11,6 +11,7 @@
   </head>
   <body>
     <!-- begin inner template-->
+    #if($loggedin)
     <div class="container-fluid header">
       <h1> Picture Goes Here</h1>
     </div>
@@ -25,9 +26,12 @@
           <li class="active"><a href="/logout">Log Out</a></li>
       </div>
     </nav>
+    #end
+
     <div class="container">
       #parse( $template )
     </div>
     <!-- end inner template-->
+
   </body>
 </html>
