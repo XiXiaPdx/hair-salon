@@ -6,6 +6,15 @@
     </div>
     <button class="btn btn-default changeClientName" type="submit">Change Name</button>
 </form>
+<form action="/stylists/clients/$client.getClientId()/assign" method="post">
+  <button class="btn btn-default assignStylist" type="submit">Assign Stylist</button>
+  <select id='assignStylist' name='assignStylist' type='text'>
+    <option value="-1">Unassigned</option>
+  #foreach ($stylist in $stylists)
+    <option value="$stylist.getStylistId()">$stylist.getStylistName()</option>
+  #end
+</select>
+</form>
 <form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()/delete" method="post">
     <button class="btn btn-default deleteClient" type="submit">Delete Client</button>
 </form>

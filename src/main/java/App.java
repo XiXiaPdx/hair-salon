@@ -120,6 +120,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/stylists/clients/:clientId/assign", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int newClientStylistId = Integer.parseInt(request.queryParams("assignStylist"));
+      Client thisClient = Client.find(Integer.parseInt(request.params(":clientId")));
+      thisClient.updateClientStylistId(newClientStylistId);
+      String url = String.format("/stylists/"+newClientStylistId);
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/stylists/:stylistId/delete", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist thisStylist =Stylist.find(Integer.parseInt(request.params(":stylistId")));
@@ -128,6 +138,8 @@ public class App {
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
 
 
   }
