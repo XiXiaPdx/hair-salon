@@ -16,30 +16,69 @@ public class App {
           response.redirect(url);
         }
     });
+    before("/stylists/*", (request, response) -> {
+        if (request.session().attribute("loggedIn") != "loggedIn") {
+          String url = String.format("/");
+          response.redirect(url);
+        }
+    });
+    before("/stylists/*/clients/*", (request, response) -> {
+        if (request.session().attribute("loggedIn") != "loggedIn") {
+          String url = String.format("/");
+          response.redirect(url);
+        }
+    });
+    before("/clients", (request, response) -> {
+        if (request.session().attribute("loggedIn") != "loggedIn") {
+          String url = String.format("/");
+          response.redirect(url);
+        }
+    });
+    before("/login", (request, response) -> {
+        if (request.session().attribute("loggedIn") != null) {
+          String url = String.format("/stylists");
+          response.redirect(url);
+        }
+    });
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("stylists", Stylist.all());
-      model.put("template", "templates/login.vtl");
-      return new ModelAndView(model, layout);
+      String url = String.format("/login");
+      response.redirect(url);
+      return new ModelAndView(model, "");
     }, new VelocityTemplateEngine());
 
     get("/login", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      String userName = request.queryParams("userName");
-      if (userName.equals("Perry")){
-        request.session().attribute("loggedIn", "loggedIn");
-      }
-      String url = String.format("/stylists");
-      response.redirect(url);
-      return new ModelAndView(model, layout);
+      String userName = request.session().attribute("userName");
+      model.put("userName", userName);
+      return new ModelAndView(model, "templates/login.vtl");
     }, new VelocityTemplateEngine());
+
+    get("/login/validate", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      User newUser = new User(request.queryParams("userName"));
+      request.session().attribute("userName", newUser.getUserName());
+      if (!newUser.authenticate()){
+        String url = String.format("/login");
+        response.redirect(url);
+      } else {
+        request.session().attribute("loggedIn", "loggedIn");
+        String url = String.format("/stylists");
+        response.redirect(url);
+      }
+      return new ModelAndView(model, "");
+    }, new VelocityTemplateEngine());
+
 
     get("/logout", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      request.session().removeAttribute("loggedIn");
       request.session().removeAttribute("userName");
-      model.put("template", "templates/login.vtl");
-      return new ModelAndView(model, layout);
+      String url = String.format("/login");
+      response.redirect(url);
+      return new ModelAndView(model, "");
     }, new VelocityTemplateEngine());
 
     get ("/stylists/:stylistId", (request, response) -> {
@@ -148,9 +187,6 @@ public class App {
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-
-
 
   }
   }
