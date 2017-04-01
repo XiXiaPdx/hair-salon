@@ -66,6 +66,14 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/clients", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("clients", Client.all());
+      model.put("template", "templates/clients.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
     post("/stylists", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String newStylistName = request.queryParams("stylistName");
