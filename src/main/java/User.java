@@ -12,18 +12,17 @@ public class User {
   public String getUserName(){
     return name;
   }
-
   public boolean authenticate (){
     try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM users WHERE name=:name;";
       User newUser = con.createQuery(sql)
         .addParameter("name", this.getUserName())
         .executeAndFetchFirst(User.class);
-        if (newUser != null) {
-          return true;
-        } else {
-          return false;
-        }
+      if (newUser != null) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 }

@@ -1,13 +1,11 @@
 body {
   height:2000px;
 }
-
 .header {
   background-color: #6e21f2;
   background-size: 100%;
   height:200px;
 }
-
 .header h1{
   position: relative;
   transform: translate(0%,50%);
@@ -15,7 +13,6 @@ body {
   color: white;
   font-size: 85px;
 }
-
 .navbar {
   background-color: #2C2C2D;
   color: white;
@@ -23,13 +20,11 @@ body {
   font-size: 18px;
   border: none;
 }
-
 .affix {
   top: 0;
   width:100%;
  z-index: 9999;
 }
-
 #stylistsStart.affix{
   padding-top: 73px;
   position:relative;
@@ -45,26 +40,21 @@ body {
   background-color:#ff1900;
   color:white;
 }
-
 .stylistTitle {
   float: left;
   transform: translate(0%,50%);
 }
-
 .btn {
   background-color: #2C2C2D;
   color: white;
   margin-left: 20px;
 }
-
 .panel-heading a:hover {
   color: white;
 }
-
 .nextToFieldButton {
   float:right;
 }
-
 .enterNameField {
   width: 70%;
 }

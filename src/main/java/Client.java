@@ -27,15 +27,14 @@ public class Client {
       .addParameter("client_stylist_id", this.client_stylist_id)
       .executeUpdate()
       .getKey();
+    }
   }
-}
-public static List<Client> all (){
+  public static List<Client> all (){
     try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM clients;";
       return con.createQuery(sql).executeAndFetch(Client.class);
     }
   }
-
   @Override
   public boolean equals (Object otherClient){
     if(!(otherClient instanceof Client)){
@@ -71,7 +70,6 @@ public static List<Client> all (){
         .executeUpdate();
     }
   }
-
   public void updateClientStylistId(int stylistId){
     try (Connection con = DB.sql2o.open()) {
       String sql = "UPDATE clients SET client_stylist_id=:client_stylist_id WHERE id=:id;";
@@ -81,5 +79,4 @@ public static List<Client> all (){
         .executeUpdate();
     }
   }
-
 }

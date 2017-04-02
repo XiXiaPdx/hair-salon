@@ -78,7 +78,6 @@ public class Stylist {
         .executeUpdate();
     }
   }
-
   @Override
   public boolean equals (Object otherStylist){
     if(!(otherStylist instanceof Stylist)){
