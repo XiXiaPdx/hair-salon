@@ -1,20 +1,27 @@
 <h1> $client.getClientName()</h1>
-<form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()" method="post">
-    <div class=" form-group">
-      <label for="clientNameChange"><h4>Change Client Name</h4></label>
-      <input id="clientNameChange" class="form-control" name="clientNameChange" type="text" required>
-    </div>
-    <button class="btn btn-default changeClientName" type="submit">Change Name</button>
-</form>
-<form action="/stylists/clients/$client.getClientId()/assign" method="post">
-  <button class="btn btn-default assignStylist" type="submit">Assign Stylist</button>
-  <select id='assignStylist' name='assignStylist' type='text'>
-    <option value="-1">Unassigned</option>
-  #foreach ($stylist in $stylists)
-    <option value="$stylist.getStylistId()">$stylist.getStylistName()</option>
-  #end
-</select>
-</form>
-<form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()/delete" method="post">
-    <button class="btn btn-default deleteClient" type="submit">Delete Client</button>
-</form>
+<div class="row">
+  <div class="col-md-5">
+  <form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()" method="post">
+      <div class=" form-group">
+        <button class="btn btn-default nextToFieldButton" type="submit">Change Name</button>
+        <input class="form-control enterNameField" name="clientNameChange" type="text" placeholder='Enter Name' required>
+      </div>
+  </form>
+  </div>
+  <div class="col-md-3">
+  <form action="/stylists/clients/$client.getClientId()/assign" method="post">
+    <button class="btn btn-default" type="submit">Assign Stylist</button>
+    <select id='assignStylist' name='assignStylist' type='text'>
+      <option value="-1">Unassigned</option>
+    #foreach ($stylist in $stylists)
+      <option value="$stylist.getStylistId()">$stylist.getStylistName()</option>
+    #end
+  </select>
+  </form>
+  </div>
+  <div class="col-md-4">
+  <form action="/stylists/$stylist.getStylistId()/clients/$client.getClientId()/delete" method="post">
+      <button class="btn btn-default deleteClient" type="submit">Delete Client</button>
+  </form>
+  </div>
+</div>

@@ -1,38 +1,50 @@
 <!--index.vtl-->
-<div class="row">
+<div class="row" data-spy="affix" data-offset-top="200" id="stylistsStart">
   <div class="col-md-9">
-  <h1> All Of Your Stylists </h1>
-  #foreach($stylist in $stylists)
-    <div class="jumbotron stylist">
-      <a href="/stylists/$stylist.getStylistId()"><h1> $stylist.getStylistName()</h1></a>
-      <h4> Clients: </h4>
-      <ul>
+    #foreach($stylist in $stylists)
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="panel-title stylistTitle">$stylist.getStylistName() - Stylist</h1>
+        <a class="button btn detailsButton" href="/stylists/$stylist.getStylistId()">Details</a>
+      </div>
+      <div class="panel-body">
+        <h3> Clients </h3>
         #foreach($client in $clients)
           #if($client.getClientStylistId() == $stylist.getStylistId())
-            <li><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
+            <p><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></p>
           #end
         #end
       </div>
+    </div>
     #end
   </div>
   <div class="col-md-3">
-    <div class="jumbotron needStylist">
-      <h3> Clients that need a Stylist </h3>
-      #foreach($client in $clients)
-        #if($client.getClientStylistId() == -1)
-          <li><a href="/stylists/$client.getClientStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
+    <div class="panel panel-default">
+      <div class="panel-heading" id="unassignedClients">
+        <h3 class="panel-title">Clients That Need A Stylist</h3>
+      </div>
+      <div class="panel-body">
+        #foreach($client in $clients)
+          #if($client.getClientStylistId() == -1)
+            <h4><a href="/stylists/$client.getClientStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></h4>
+          #end
         #end
-      #end
+      </div>
     </div>
   </div>
 </div>
-  <form action="/stylists" method="post">
-      <div class=" form-group">
-        <label for="stylistName"><h4>Add A Stylist</h4></label>
-        <input id="stylistName" class="form-control" name="stylistName" type="text" required>
-      </div>
-      <button class="btn btn-default addStylist" type="submit">Add A Stylist</button>
-  </form>
+<div class="row">
+  <div class="col-md-5">
+    <form action="/stylists" method="post">
+        <div class=" form-group">
+          <button class="btn btn-default nextToFieldButton" type="submit">Add A Stylist</button>
+          <input class="form-control enterNameField" name="stylistName" type="text" placeholder='Enter Stylist Name' required>
+        </div>
+    </form>
+  </div>
+  <div class="col-md-7">
+  </div>
+</div>
 
 
 

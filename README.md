@@ -5,8 +5,17 @@
 #### By _**Xi Xia**_
 
 ## Description
-_Example text for the description of the project_
 
+This is a mock and very basic operation manager for a hair salon.  
+
+- login page, authenticate username to Database. No password encryption or authentication.
+- manage two Java classes, Stylists & Clients.
+- change names, delete, add both classes.
+- reassign Client to different Stylists.
+- Postgres SQL database is provided.
+
+## Technologies Used
+- Java, Spark, Apache Velocity Engine, Bootstrap, HTML, CSS
 
 ## Specifications
 
@@ -32,18 +41,16 @@ _Example text for the description of the project_
 
 
 
-
-
-
-
-
-
 ## Setup/Installation Requirements
 
-* _Clone the repository_
-* _Run the command 'gradle run'_
+* _Clone the repository from here_ https://github.com/XiXiaPdx/hair-salon
+* _Change into the project directory 'hair-salon'_
+* In PSQL: run command 'CREATE DATABASE hair_salon;'
+* In terminal command line: 'psql hair_salon < hairDB.sql'
+* _In terminal command line: 'gradle run'_
 * _Open browser and go to localhost:4567_
 
+* #### Login User Name is "Perry" 
 
 ### License
 

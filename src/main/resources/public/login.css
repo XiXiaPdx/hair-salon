@@ -1,0 +1,31 @@
+html{
+  height:100%;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-image: linear-gradient(to top, #2C2C2D 0%, #0A1330 100%);
+}
+
+.header {
+  position: fixed;
+  left:0;
+  right:0;
+  margin:auto;
+  top: 50%;
+  transform: translate(0%,-50%);
+  border-radius: 10px;
+  background-color: white;
+  width:33%;
+  padding: 20px;
+  background-color: #6e21f2;
+  color: white;
+}
+
+#warningUserName {
+  color: #353332;
+  font-size: 21px;
+}

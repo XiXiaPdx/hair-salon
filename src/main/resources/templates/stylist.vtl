@@ -1,27 +1,41 @@
+<h1> $stylist.getStylistName()</h1>
+<div class="row">
+  <div class="col-md-5">
+    <form action="/stylists/$stylist.getStylistId()" method="post" id="stylistNameChange">
+        <div class=" form-group">
+          <button class="btn btn-default nextToFieldButton" type="submit">Change Name</button>
+          <input  class="form-control enterNameField" name="stylistNameChange" type="text" placeholder='Enter Name' required>
+        </div>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <form action="/stylists/$stylist.getStylistId()/delete" method="post">
+      <button class="btn btn-default fired" type="submit">You're fired!</button>
+    </form>
+  </div>
+  <div class="col-md-5">
+  </div>
+</div>
 
 
- <h1> $stylist.getStylistName()</h1>
- <form action="/stylists/$stylist.getStylistId()/delete" method="post">
-     <button class="btn btn-default changeStylistName" type="submit">You're fired.</button>
- </form>
- <h4> Your Clients: </h4>
+
+<div class="row">
+ <h3> Clients: </h3>
  <ul>
  #foreach($client in $clients)
-     <li><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></li>
+     <h4><a href="/stylists/$stylist.getStylistId()/clients/$client.getClientId()"> $client.getClientName()</a></h4>
    #end
 </ul>
-
-  <form action="/stylists/$stylist.getStylistId()" method="post">
-      <div class=" form-group">
-        <label for="stylistNameChange"><h4>Change Stylist Name</h4></label>
-        <input id="stylistNameChange" class="form-control" name="stylistNameChange" type="text" required>
-      </div>
-      <button class="btn btn-default changeStylistName" type="submit">Change Name</button>
-  </form>
+</div>
+<div class="row">
+  <div class="col-md-5">
   <form action="/stylists/$stylist.getStylistId()/clients/add" method="post">
       <div class=" form-group">
-        <label for="addClient"><h4>Name of new client</h4></label>
-        <input id="addClient" class="form-control" name="addClient" type="text" required>
+        <button class="btn btn-default nextToFieldButton" type="submit">Add Client</button>
+        <input class="form-control enterNameField" name="addClient" type="text" placeholder='Enter Name' required>
       </div>
-      <button class="btn btn-default addClient" type="submit">Add Client</button>
   </form>
+</div>
+<div class="col-md-7">
+</div>
+</div>
