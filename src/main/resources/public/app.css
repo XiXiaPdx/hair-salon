@@ -19,6 +19,8 @@ body {
   border-radius: 0px;
   font-size: 18px;
   border: none;
+  -webkit-transition: top 2s;
+  -webkit-transition-timing-function: ease-out;
 }
 .affix {
   top: 0;

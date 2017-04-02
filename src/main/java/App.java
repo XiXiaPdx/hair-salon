@@ -84,6 +84,8 @@ public class App {
     get("/stylists/:stylistId/clients/:clientId", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Client thisClient = Client.find(Integer.parseInt(request.params(":clientId")));
+      Stylist thisStylist =Stylist.find(Integer.parseInt(request.params(":stylistId")));
+      model.put("stylist", thisStylist);
       model.put("stylists", Stylist.all());
       model.put("client", thisClient);
       model.put("template", "templates/client.vtl");
